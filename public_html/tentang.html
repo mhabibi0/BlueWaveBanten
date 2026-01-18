@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tentang Kami - BlueWave Banten</title>
+    
+    <meta name="description" content="Tentang BlueWave Banten - Portal wisata bahari terpercaya yang menyajikan informasi lengkap destinasi wisata Banten">
+    <meta name="keywords" content="tentang bluewave banten, tentang kami, visi misi, tim pengembang, kontak wisata banten">
+    <meta name="author" content="BlueWave Banten">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/tentang.css">
+    <script src="assets/js/tentang.js" defer></script>
+</head>
+
+<body class="bg-gray-50 text-gray-800 antialiased">
+     <header class="bg-white/95 backdrop-blur-md shadow-lg fixed w-full top-0 z-50 border-b border-gray-100">
+        <div class="container mx-auto flex justify-between items-center px-4 sm:px-6 py-3">
+            <a href="index.html" class="flex items-center space-x-2 sm:space-x-3 group">
+                <img src="https://www.bluewavebanten.my.id/assets/images/logo_bluewave.png" alt="Logo BlueWave Banten" class="w-12 h-12 sm:w-16 sm:h-16 object-contain transition-transform duration-300 group-hover:scale-105" />
+                <div>
+                    <span class="text-xl sm:text-2xl font-bold gradient-text">BlueWave Banten</span>
+                    <p class="text-xs text-gray-600 mt-1 hidden sm:block">Portal Wisata Bahari</p>
+                </div>
+            </a>
+            
+            <nav class="hidden lg:flex items-center space-x-6 xl:space-x-8 text-gray-700 font-medium text-sm">
+                <a href="index.html" class="nav-link hover:text-blue-600 transition-all duration-300 py-2 flex items-center">
+                    <i class="fas fa-home mr-2 text-sm"></i>Beranda
+                </a>
+                
+                <div class="relative" id="destinasiDropdown">
+                    <button class="nav-link hover:text-blue-600 transition-all duration-300 py-2 flex items-center">
+                        <i class="fas fa-map-marked-alt mr-2 text-sm"></i>Destinasi
+                        <i class="fas fa-chevron-down text-xs ml-1"></i>
+                    </button>
+                    <div id="destinasiMenu" class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl z-50 hidden">
+                        <a href="wisata.html#wisata" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600">
+                            Wisata Bahari
+                        </a>
+                        <a href="wisata.html#monitoring" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600">
+                            Monitoring Wisata
+                        </a>
+                    </div>
+                </div>
+                <a href="blog.html" class="nav-link hover:text-blue-600 transition-all duration-300 py-2 flex items-center">
+                    <i class="fas fa-newspaper mr-2 text-sm"></i>Blog
+                </a>
+                <a href="tentang.html" class="nav-link active hover:text-blue-600 transition-all duration-300 py-2 flex items-center">
+                    <i class="fas fa-info-circle mr-2 text-sm"></i>Tentang
+                </a>
+                
+                <div id="authSection">
+                    <a href="https://user.bluewavebanten.my.id/login.html" class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-5 py-2.5 rounded-full ...">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Login
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="flex items-center space-x-4 lg:hidden">
+                <button class="text-gray-700 hover:text-blue-600 transition-colors duration-200" id="mobileMenuBtn">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="lg:hidden hidden bg-white border-t border-gray-100 shadow-lg">
+            <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+                <a href="index.html" class="nav-link py-3 border-b border-gray-100 flex items-center">
+                    <i class="fas fa-home mr-3 text-blue-600"></i>Beranda
+                </a>
+                <a href="wisata.html#wisata" class="nav-link py-3 border-b border-gray-100 flex items-center">
+                    <i class="fas fa-umbrella-beach mr-3 text-blue-600"></i>Wisata Bahari
+                </a>
+                <a href="wisata.html#monitoring" class="nav-link py-3 border-b border-gray-100 flex items-center">
+                    <i class="fas fa-satellite mr-3 text-blue-600"></i>Monitoring Wisata
+                </a>
+                <a href="blog.html" class="nav-link py-3 border-b border-gray-100 flex items-center">
+                    <i class="fas fa-newspaper mr-3 text-blue-600"></i>Blog
+                </a>
+                <a href="tentang.html" class="nav-link active py-3 border-b border-gray-100 flex items-center">
+                    <i class="fas fa-info-circle mr-3 text-blue-600"></i>Tentang
+                </a>
+                
+                <div id="mobileAuthSection" class="pt-2">
+                    <a href="https://user.bluewavebanten.my.id/login.html" class="bg-blue-600 text-white text-center py-3 rounded-lg ...">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Login
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    
+    <section class="pt-32 pb-20 bg-gradient-to-br from-blue-600 to-blue-800 text-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white/20">
+                    <i class="fas fa-info-circle text-yellow-300 mr-2"></i>
+                    <span class="text-sm font-semibold">Tentang BlueWave Banten</span>
+                </div>
+                
+                <h1 class="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
+                    Mengenal Lebih Dekat
+                    <span class="text-yellow-300 block mt-2">BlueWave Banten</span>
+                </h1>
+                
+                <p class="text-xl lg:text-2xl mb-8 text-blue-100 leading-relaxed">
+                    Portal wisata bahari terpercaya yang menghubungkan Anda dengan keindahan alam Banten. 
+                    Temukan cerita di balik layar dan tim yang berdedikasi.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#visi-misi" class="bg-yellow-400 text-blue-900 px-8 py-4 rounded-full font-bold hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center group">
+                        <i class="fas fa-bullseye mr-3 group-hover:rotate-12 transition-transform duration-300"></i>
+                        Visi & Misi
+                    </a>
+                    
+                    <a href="#kontak" class="border-2 border-white text-white px-8 py-4 rounded-full font-bold hover:bg-white hover:text-blue-900 transition-all duration-300 flex items-center justify-center group">
+                        <i class="fas fa-envelope mr-3 group-hover:scale-110 transition-transform duration-300"></i>
+                        Hubungi Kami
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 lg:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div>
+                    <div class="inline-flex items-center bg-blue-100 rounded-full px-4 py-2 mb-6">
+                        <i class="fas fa-compass text-blue-600 mr-2"></i>
+                        <span class="text-sm font-semibold text-blue-700">Tentang Kami</span>
+                    </div>
+                    
+                    <h2 class="text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
+                        Cerita di Balik <span class="gradient-text">BlueWave Banten</span>
+                    </h2>
+                    
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        BlueWave Banten lahir dari kecintaan terhadap keindahan alam bahari Banten yang masih 
+                        banyak belum terekspos. Kami hadir sebagai jembatan antara wisatawan dengan destinasi 
+                        menakjubkan yang tersembunyi di sepanjang pesisir Banten.
+                    </p>
+                    
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Dengan tim yang terdiri dari local expert, travel enthusiast, dan content creator, 
+                        kami berkomitmen untuk menyajikan informasi yang akurat, terpercaya, dan selalu 
+                        terupdate untuk pengalaman wisata Anda yang terbaik.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center">
+                            <div class="text-3xl lg:text-4xl font-bold text-blue-600 mb-2">3+</div>
+                            <div class="text-gray-600 font-semibold">Tahun Pengalaman</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl lg:text-4xl font-bold text-green-600 mb-2">50+</div>
+                            <div class="text-gray-600 font-semibold">Destinasi Terdaftar</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl lg:text-4xl font-bold text-purple-600 mb-2">25K+</div>
+                            <div class="text-gray-600 font-semibold">Pengunjung Bulanan</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl lg:text-4xl font-bold text-orange-600 mb-2">4.8</div>
+                            <div class="text-gray-600 font-semibold">Rating Pengguna</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl p-8 text-white">
+                        <div class="text-center mb-8">
+                            <i class="fas fa-quote-left text-4xl text-yellow-300 mb-4"></i>
+                            <h3 class="text-2xl font-bold mb-4">Misi Kami</h3>
+                            <p class="text-blue-100 text-lg leading-relaxed">
+                                "Menjadi platform terdepan dalam mempromosikan wisata bahari Banten 
+                                dengan menyajikan informasi yang terpercaya, edukatif, dan inspiratif 
+                                untuk menciptakan pengalaman wisata yang tak terlupakan."
+                            </p>
+                        </div>
+                        
+                        <div class="flex items-center justify-center space-x-4">
+                            <img src="https://www.bluewavebanten.my.id/assets/images/logo_bluewave.png" 
+                                 alt="Logo BlueWave" 
+                                 class="w-16 h-16 object-contain">
+                            <div>
+                                <div class="font-semibold">BlueWave Banten Team</div>
+                                <div class="text-blue-200 text-sm">Dedicated to Your Journey</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute -top-4 -right-4 w-24 h-24 bg-yellow-400 rounded-full opacity-20 floating"></div>
+                    <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-blue-400 rounded-full opacity-20 floating" style="animation-delay: 2s;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="visi-misi" class="py-16 lg:py-24 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-800 mb-4">🎯 Visi & Misi</h2>
+                <p class="text-gray-600 text-lg lg:text-xl max-w-3xl mx-auto">
+                    Pedoman yang menjadi dasar setiap langkah dan keputusan kami
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                    <div class="text-center mb-8">
+                        <div class="w-20 h-20 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-eye text-3xl text-blue-600"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-gray-800 mb-4">Visi</h3>
+                    </div>
+                    
+                    <p class="text-lg text-gray-600 mb-6 text-center leading-relaxed">
+                        "Menjadi platform digital terpercaya dan terdepan dalam mempromosikan 
+                        wisata bahari Banten, serta menjadi mitra terpercaya bagi wisatawan 
+                        dalam mengeksplorasi keindahan alam bahari Indonesia."
+                    </p>
+                    
+                    <div class="bg-blue-50 rounded-xl p-6 mt-8">
+                        <h4 class="font-semibold text-blue-800 mb-3">Target 2025</h4>
+                        <ul class="space-y-2 text-blue-700">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>100+ destinasi wisata terdaftar</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>50.000+ pengunjung bulanan</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>Partner dengan 50+ penyedia jasa wisata</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                    <div class="text-center mb-8">
+                        <div class="w-20 h-20 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-bullseye text-3xl text-green-600"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-gray-800 mb-4">Misi</h3>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-map-marked-alt text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Memetakan Potensi Wisata</h4>
+                                <p class="text-gray-600">Mengidentifikasi dan mempromosikan destinasi wisata bahari yang masih tersembunyi</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-users text-green-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Edukasi & Informasi</h4>
+                                <p class="text-gray-600">Menyediakan konten edukatif tentang wisata berkelanjutan dan konservasi bahari</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-handshake text-purple-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Kemitraan Strategis</h4>
+                                <p class="text-gray-600">Bekerja sama dengan komunitas lokal dan pelaku usaha wisata</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-mobile-alt text-orange-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Inovasi Digital</h4>
+                                <p class="text-gray-600">Mengembangkan platform yang user-friendly dan informatif</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 lg:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-800 mb-4">⭐ Nilai-Nilai Kami</h2>
+                <p class="text-gray-600 text-lg lg:text-xl max-w-3xl mx-auto">
+                    Prinsip-prinsip yang membimbing setiap tindakan dan keputusan kami
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="value-card p-6 rounded-2xl text-center border border-gray-100 group cursor-pointer">
+                    <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-200 transition-colors duration-300">
+                        <i class="fas fa-shield-alt text-2xl text-blue-600 feature-icon"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Terpercaya</h3>
+                    <p class="text-gray-600 text-sm">Informasi yang akurat dan dapat diandalkan untuk pengalaman wisata terbaik</p>
+                </div>
+                
+                <div class="value-card p-6 rounded-2xl text-center border border-gray-100 group cursor-pointer">
+                    <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-green-200 transition-colors duration-300">
+                        <i class="fas fa-leaf text-2xl text-green-600 feature-icon"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Berkelanjutan</h3>
+                    <p class="text-gray-600 text-sm">Mendorong praktik wisata yang ramah lingkungan dan berkelanjutan</p>
+                </div>
+                
+                <div class="value-card p-6 rounded-2xl text-center border border-gray-100 group cursor-pointer">
+                    <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-200 transition-colors duration-300">
+                        <i class="fas fa-heart text-2xl text-purple-600 feature-icon"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Komunitas</h3>
+                    <p class="text-gray-600 text-sm">Memberdayakan komunitas lokal dan menghargai budaya setempat</p>
+                </div>
+                
+                <div class="value-card p-6 rounded-2xl text-center border border-gray-100 group cursor-pointer">
+                    <div class="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-orange-200 transition-colors duration-300">
+                        <i class="fas fa-lightbulb text-2xl text-orange-600 feature-icon"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Inovatif</h3>
+                    <p class="text-gray-600 text-sm">Terus berinovasi dalam menyajikan informasi dan layanan terbaik</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 lg:py-24 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-800 mb-4">🕰️ Perjalanan Kami</h2>
+                <p class="text-gray-600 text-lg lg:text-xl max-w-3xl mx-auto">
+                    Cerita perkembangan BlueWave Banten dari masa ke masa
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="space-y-8">
+                    <div class="timeline-item">
+                        <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
+                                    <span class="font-bold text-blue-600">2021</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800">Awal Mula</h3>
+                            </div>
+                            <p class="text-gray-600">
+                                BlueWave Banten dimulai sebagai blog sederhana yang membagikan pengalaman 
+                                traveling di destinasi bahari Banten. Fokus pada konten autentik dan foto-foto 
+                                menakjubkan dari lokasi tersembunyi.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4">
+                                    <span class="font-bold text-green-600">2022</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800">Ekspansi Konten</h3>
+                            </div>
+                            <p class="text-gray-600">
+                                Mengembangkan platform dengan fitur destinasi terorganisir, tips traveling, 
+                                dan panduan lengkap. Menjalin kemitraan dengan 15+ penyedia jasa wisata lokal.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mr-4">
+                                    <span class="font-bold text-purple-600">2023</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800">Platform Terintegrasi</h3>
+                            </div>
+                            <p class="text-gray-600">
+                                Meluncurkan sistem pemesanan tiket terintegrasi, fitur ulasan pengguna, 
+                                dan mobile-responsive design. Mencapai 25.000+ pengunjung bulanan.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mr-4">
+                                    <span class="font-bold text-orange-600">2024</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800">Masa Depan</h3>
+                            </div>
+                            <p class="text-gray-600">
+                                Fokus pada pengembangan aplikasi mobile, ekspansi ke destinasi bahari 
+                                lainnya di Indonesia, dan program edukasi wisata berkelanjutan.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 lg:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-800 mb-4">👥 Tim Kami</h2>
+                <p class="text-gray-600 text-lg lg:text-xl max-w-3xl mx-auto">
+                    Para ahli dan enthusiast di balik kesuksesan BlueWave Banten
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" id="teamMembers">
+                <div class="col-span-4 text-center py-12">
+                    <div class="spinner mx-auto mb-4"></div>
+                    <p class="text-gray-600">Memuat data tim...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="kontak" class="py-16 lg:py-24 bg-gradient-to-br from-blue-50 to-cyan-50">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+                <div>
+                    <div class="inline-flex items-center bg-white rounded-full px-4 py-2 mb-6 shadow-sm border border-gray-100">
+                        <i class="fas fa-envelope text-blue-500 mr-2"></i>
+                        <span class="text-sm font-semibold text-gray-700">Hubungi Kami</span>
+                    </div>
+                    
+                    <h2 class="text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
+                        Mari Berkolaborasi
+                    </h2>
+                    
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Kami selalu terbuka untuk diskusi, kolaborasi, atau sekadar mendengar 
+                        cerita pengalaman wisata Anda di Banten. Jangan ragu untuk menghubungi kami.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-envelope text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Email</h4>
+                                <p class="text-gray-600">info@bluewavebanten.my.id</p>
+                                <p class="text-gray-600">support@bluewavebanten.my.id</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-phone text-green-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Telepon</h4>
+                                <p class="text-gray-600">+62 812-3456-7890 (Customer Service)</p>
+                                <p class="text-gray-600">+62 813-4567-8901 (Partnership)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-purple-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Alamat</h4>
+                                <p class="text-gray-600">Jl. Wisata Bahari No. 123</p>
+                                <p class="text-gray-600">Serang, Banten 42100</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-clock text-orange-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Jam Operasional</h4>
+                                <p class="text-gray-600">Senin - Jumat: 08:00 - 17:00 WIB</p>
+                                <p class="text-gray-600">Sabtu: 09:00 - 15:00 WIB</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-semibold text-gray-800 mb-4">Follow Kami</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center hover:bg-blue-700 transition-colors duration-200">
+                                <i class="fab fa-facebook-f text-white"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-pink-600 rounded-xl flex items-center justify-center hover:bg-pink-700 transition-colors duration-200">
+                                <i class="fab fa-instagram text-white"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-blue-400 rounded-xl flex items-center justify-center hover:bg-blue-500 transition-colors duration-200">
+                                <i class="fab fa-twitter text-white"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-red-500 rounded-xl flex items-center justify-center hover:bg-red-600 transition-colors duration-200">
+                                <i class="fab fa-youtube text-white"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Kirim Pesan</h3>
+                    
+                    <form id="contactForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Nama Lengkap</label>
+                                <input type="text" 
+                                       name="Nama Lengkap" class="contact-input w-full px-4 py-3 rounded-xl focus:outline-none"
+                                       placeholder="Masukkan nama lengkap"
+                                       required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+                                <input type="email" 
+                                       name="Email" class="contact-input w-full px-4 py-3 rounded-xl focus:outline-none"
+                                       placeholder="email@example.com"
+                                       required>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Subjek</label>
+                            <input type="text" 
+                                   name="Subjek" class="contact-input w-full px-4 py-3 rounded-xl focus:outline-none"
+                                   placeholder="Subjek pesan"
+                                   required>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Pesan</label>
+                            <textarea 
+                                name="Pesan" class="contact-input w-full px-4 py-3 rounded-xl focus:outline-none h-32"
+                                placeholder="Tulis pesan Anda di sini..."
+                                required></textarea>
+                        </div>
+                        
+                        <button type="submit" 
+                                class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold hover:bg-blue-700 transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:scale-105">
+                            <i class="fas fa-paper-plane mr-2"></i>Kirim Pesan
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 lg:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-800 mb-4">❓ Pertanyaan Umum</h2>
+                <p class="text-gray-600 text-lg lg:text-xl max-w-3xl mx-auto">
+                    Jawaban untuk pertanyaan yang sering diajukan tentang BlueWave Banten
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto space-y-6" id="faqList">
+                <div class="col-span-1 text-center py-12">
+                    <div class="spinner mx-auto mb-4"></div>
+                    <p class="text-gray-600">Memuat FAQ...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-12 lg:py-16">
+        <div class="container mx-auto px-6">
+            <div class="border-t border-gray-800 mt-8 lg:mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 BlueWave Banten. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

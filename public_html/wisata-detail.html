@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail Wisata - BlueWave Banten</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/wisata.css"> 
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js"></script>
+    
+    <script src="assets/js/wisata-detail.js" defer></script>
+</head>
+
+<body class="bg-gray-50 text-gray-800 antialiased" style="font-family: 'Poppins', sans-serif;">
+    
+    <header>...</header> 
+
+    <main class="container mx-auto px-4 md:px-6 py-8 pt-32 min-h-screen">
+        
+        <div id="loadingState" class="text-center py-20">
+            <div class="spinner mx-auto mb-4 w-10 h-10 border-blue-600"></div>
+            <h2 class="text-2xl font-semibold text-gray-700">Memuat Detail Destinasi...</h2>
+        </div>
+
+        <div id="detailContent" class="hidden bg-white p-8 rounded-3xl shadow-2xl border border-gray-100">
+            
+            <div class="flex justify-between items-start mb-6 border-b pb-4">
+                <div>
+                    <h1 id="detailTitle" class="text-4xl font-bold text-gray-800">Nama Destinasi</h1>
+                    <div class="flex items-center mt-2 space-x-4 text-gray-600">
+                        <span class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span id="detailLocation">Lokasi, Banten</span>
+                        </span>
+                        <span class="flex items-center">
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            <span id="detailRating">4.5</span>
+                        </span>
+                        <span class="flex items-center">
+                            <i class="fas fa-eye mr-2"></i>
+                            <span id="detailViews">0 dilihat</span>
+                        </span>
+                    </div>
+                </div>
+                <a href="wisata.html" class="text-blue-600 hover:text-blue-800 text-lg font-semibold">
+                    ← Kembali ke Daftar
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2">
+                    <img id="detailImage" src="placeholder.jpg" alt="Gambar Utama" class="w-full h-96 object-cover rounded-2xl shadow-lg mb-6">
+                    
+                    <div class="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-2xl border border-blue-200 mt-6">
+                        <h4 class="font-semibold text-blue-800 mb-4 flex items-center text-lg">
+                            <i class="fas fa-cloud-sun text-2xl mr-3"></i>
+                            Kondisi Cuaca Saat Ini
+                        </h4>
+                        <div id="detailWeather" class="grid grid-cols-2 gap-4">
+                            <div class="py-2 border-b border-blue-100"><span class="text-gray-700">Cuaca:</span> <span id="weatherCondition" class="font-semibold text-blue-600">...</span></div>
+                            <div class="py-2 border-b border-blue-100"><span class="text-gray-700">Suhu:</span> <span id="weatherTemp" class="font-semibold text-blue-600">...</span></div>
+                            <div class="py-2 border-b border-blue-100"><span class="text-gray-700">Kelembaban:</span> <span id="weatherHumidity" class="font-semibold text-blue-600">...</span></div>
+                            <div class="py-2 border-b border-blue-100"><span class="text-gray-700">Angin:</span> <span id="weatherWind" class="font-semibold text-blue-600">...</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="mb-6">
+                        <h4 class="font-semibold text-gray-800 mb-3 text-xl flex items-center">
+                            <i class="fas fa-info-circle text-blue-600 mr-2"></i>
+                            Deskripsi
+                        </h4>
+                        <p id="detailDescription" class="text-gray-600 leading-relaxed text-sm"></p>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-2xl border border-green-200 mb-6">
+                        <h4 class="font-semibold text-gray-800 mb-2">Harga Tiket Masuk</h4>
+                        <div class="flex items-baseline space-x-2 mb-4">
+                            <span id="detailPrice" class="text-4xl font-bold text-green-600">Rp 0</span>
+                            <span class="text-gray-600">/orang</span>
+                        </div>
+                        <button 
+                            onclick="window.location.href='login.html'" 
+                            class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-4 rounded-xl font-bold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center">
+                            <i class="fas fa-ticket-alt mr-3"></i>
+                            Pesan Tiket Sekarang
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold text-green-600 mb-3 flex items-center">
+                                <i class="fas fa-check-circle mr-2"></i>
+                                Fasilitas
+                            </h4>
+                            <ul id="detailFasilitas" class="text-sm text-gray-600 space-y-2">
+                                </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-blue-600 mb-3 flex items-center">
+                                <i class="fas fa-lightbulb mr-2"></i>
+                                Tips Berkunjung
+                            </h4>
+                            <ul id="detailTips" class="text-sm text-gray-600 space-y-2">
+                                </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-10">
+                 <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">🗺️ Lokasi Peta</h2>
+                 <div id="detailMap" style="height: 400px;" class="rounded-2xl shadow-xl border border-gray-200"></div>
+            </div>
+            
+        </div>
+    </main>
+
+    <footer>...</footer> 
+
+    </body>
+</html>

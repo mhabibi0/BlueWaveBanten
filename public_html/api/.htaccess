@@ -1,0 +1,20 @@
+# =============================================================
+# HTACCESS KHUSUS UNTUK DIREKTORI /api/ (VERSI FINAL BERSIH)
+# =============================================================
+
+# 1. Aktifkan Mesin Rewrite
+RewriteEngine On
+
+# 2. Hapus Aturan OPTIONS Awal
+# KAMI MENGHAPUS BLOK OPTIONS KARENA AUTH.PHP SUDAH MENGURUSNYA.
+
+# 3. Atur Header CORS (Pasif)
+# Kami menghapus baris Access-Control-Allow-Origin hardcode agar
+# PHP (config.php) yang dinamis bisa bekerja.
+
+<IfModule mod_headers.c>
+    # BARIS Access-Control-Allow-Origin DIHAPUS KARENA HARUS DINAMIS OLEH PHP.
+    Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type, x-authorization, Authorization, X-Requested-With"
+    Header set Access-Control-Allow-Credentials "true"
+</IfModule>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlueWave Banten - Portal Wisata Bahari Terpercaya</title>
+    
+    <meta name="description" content="Jelajahi keindahan wisata bahari Banten - Pulau Panjang, Tanjung Lesung, Pantai Anyer. Informasi lengkap destinasi, blog wisata, dan tips traveling.">
+    <meta name="keywords" content="wisata banten, pantai anyer, pulau panjang, tanjung lesung, blog wisata, informasi destinasi, wisata bahari">
+    <meta name="author" content="BlueWave Banten">
+    
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/index.css">
+    <script src="assets/js/index.js" defer></script>
+
+</head>
+
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+    <header class="bg-white shadow-lg fixed w-full top-0 z-50 border-b border-gray-100">
+        <div class="container mx-auto flex justify-between items-center px-4 sm:px-6 py-3">
+            <a href="/" class="flex items-center space-x-2 sm:space-x-3 group">
+                <img src="https://www.bluewavebanten.my.id/assets/images/logo_bluewave.png" alt="Logo BlueWave Banten" class="w-12 h-12 sm:w-16 sm:h-16 object-contain transition-transform duration-300 group-hover:scale-105" />
+                <div>
+                    <span class="text-xl sm:text-2xl font-bold gradient-text">BlueWave Banten</span>
+                    <p class="text-xs text-gray-600 mt-1 hidden sm:block">Portal Wisata Bahari</p>
+                </div>
+            </a>
+            
+            <nav class="hidden lg:flex items-center space-x-6 xl:space-x-8 text-gray-700 font-medium text-sm">
+                <a href="/" class="nav-link active hover:text-blue-600 transition-all duration-300 py-2 flex items-center">
+                    <i class="fas fa-home mr-2 text-sm"></i>Beranda
+                </a>
+                
+                <div class="relative" id="destinasiDropdown">
+                    <button class="nav-link hover:text-blue-600 transition-all duration-300 py-2 flex items-center">
+                        <i class="fas fa-map-marked-alt mr-2 text-sm"></i>Destinasi
+                        <i class="fas fa-chevron-down text-xs ml-1"></i>
+                    </button>
+                    <div id="destinasiMenu" class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl z-50 hidden">
+                        <a href="/wisata.html#wisata" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600">
+                            Wisata Bahari
+                        </a>
+                        <a href="/wisata.html#monitoring" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600">
+                            Monitoring Wisata
+                        </a>
+                    </div>
+                </div>
+                <a href="/blog.html" class="nav-link hover:text-blue-600 transition-all duration-300 py-2 flex items-center">
+                    <i class="fas fa-newspaper mr-2 text-sm"></i>Blog
+                </a>
+                <a href="/tentang.html" class="nav-link hover:text-blue-600 transition-all duration-300 py-2 flex items-center">
+                    <i class="fas fa-info-circle mr-2 text-sm"></i>Tentang
+                </a>
+                
+                <div id="authSection">
+                    <a href="https://user.bluewavebanten.my.id/login.html" class="bg-blue-600 text-white px-5 py-2.5 rounded-full hover:bg-blue-700 transition">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Login
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="flex items-center space-x-4 lg:hidden">
+                <button class="text-gray-700 hover:text-blue-600 transition-colors duration-200" id="mobileMenuBtn">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="lg:hidden hidden bg-white border-t border-gray-100 shadow-lg">
+            <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+                <a href="/" class="nav-link active py-3 border-b border-gray-100 flex items-center"><i class="fas fa-home mr-3 text-blue-600"></i>Beranda</a>
+                
+                <a href="/wisata.html#wisata" class="nav-link py-3 border-b border-gray-100 flex items-center"><i class="fas fa-umbrella-beach mr-3 text-blue-600"></i>Wisata Bahari</a>
+                <a href="/wisata.html#monitoring" class="nav-link py-3 border-b border-gray-100 flex items-center"><i class="fas fa-satellite mr-3 text-blue-600"></i>Monitoring Wisata</a>
+                
+                <a href="/blog.html" class="nav-link py-3 border-b border-gray-100 flex items-center"><i class="fas fa-newspaper mr-3 text-blue-600"></i>Blog</a>
+                <a href="/tentang.html" class="nav-link py-3 border-b border-gray-100 flex items-center"><i class="fas fa-info-circle mr-3 text-blue-600"></i>Tentang</a>
+                
+                <div id="mobileAuthSection" class="pt-2">
+                    <a href="https://user.bluewavebanten.my.id/login.html" class="bg-blue-600 text-white text-center py-3 rounded-lg block">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Login
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- ============================================= -->
+    <!-- =========== BAGIAN UTAMA (HERO) =========== -->
+    <!-- ============================================= -->
+    <section class="hero-section min-h-screen flex items-center pt-48 lg:pt-0">
+        <div class="container mx-auto px-6 py-12 lg:py-24">
+            <div class="max-w-4xl mx-auto text-center text-white">
+                <div class="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white/20">
+                    <i class="fas fa-compass text-yellow-300 mr-2"></i>
+                    <span class="text-sm font-semibold">Portal Wisata Bahari Banten</span>
+                </div>
+                
+                <h1 class="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
+                    Jelajahi Keindahan
+                    <span class="text-yellow-300 block mt-2">Banten yang Memukau</span>
+                </h1>
+                
+                <p class="text-xl lg:text-2xl mb-8 text-blue-100 leading-relaxed">
+                    Temukan informasi lengkap destinasi wisata bahari terbaik, tips traveling, 
+                    dan cerita inspiratif dari para traveler di Banten.
+                </p>
+
+                <!-- [FITUR BARU] Quick Search Bar -->
+                <div id="searchContainer" class="max-w-2xl mx-auto mb-10 relative">
+                    <div class="relative flex items-center bg-white/20 backdrop-blur-md rounded-full shadow-lg border border-white/20 p-2">
+                        <div class="pl-5 pr-3 text-white text-lg">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <input type="text" 
+                               id="searchInput"
+                               placeholder="Mau ke mana hari ini? (cth: Pantai Anyer)"
+                               class="flex-1 w-full bg-transparent text-white text-lg placeholder-blue-200 focus:outline-none py-3">
+                    </div>
+                    <!-- Hasil pencarian akan muncul di sini (diisi oleh index.js) -->
+                    <div id="searchResults" class="absolute top-full mt-2 w-full bg-white rounded-xl shadow-lg z-50 hidden overflow-hidden text-left">
+                    </div>
+                </div>
+
+                <!-- Tombol Aksi Utama -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#destinasi" class="bg-yellow-400 text-blue-900 px-8 py-4 rounded-full font-bold hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center group">
+                        <i class="fas fa-map-marked-alt mr-3 group-hover:rotate-12 transition-transform duration-300"></i>
+                        Jelajahi Destinasi
+                    </a>
+                    <a href="#blog" class="border-2 border-white text-white px-8 py-4 rounded-full font-bold hover:bg-white hover:text-blue-900 transition-all duration-300 flex items-center justify-center group">
+                        <i class="fas fa-newspaper mr-3 group-hover:scale-110 transition-transform duration-300"></i>
+                        Baca Blog Wisata
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- =========== BAGIAN STATISTIK ============== -->
+    <!-- ============================================= -->
+    <section class="py-16 lg:py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+                <div class="stat-card p-6 lg:p-8 rounded-2xl text-center border border-gray-100">
+                    <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-umbrella-beach text-2xl text-blue-600"></i>
+                    </div>
+                    <!-- Placeholder untuk Total Destinasi (diisi oleh index.js) -->
+                    <div class="text-3xl lg:text-4xl font-bold text-blue-600 mb-2" id="totalWisata">0</div>
+                    <div class="text-gray-600 font-semibold">Destinasi Terdaftar</div>
+                </div>
+                <div class="stat-card p-6 lg:p-8 rounded-2xl text-center border border-gray-100">
+                    <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-2xl text-green-600"></i>
+                    </div>
+                    <div class="text-3xl lg:text-4xl font-bold text-green-600 mb-2" id="totalPengunjung">10K+</div>
+                    <div class="text-gray-600 font-semibold">Pengunjung/Bulan</div>
+                </div>
+                <div class="stat-card p-6 lg:p-8 rounded-2xl text-center border border-gray-100">
+                    <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-star text-2xl text-purple-600"></i>
+                    </div>
+                    <div class="text-3xl lg:text-4xl font-bold text-purple-600 mb-2" id="rating">4.7</div>
+                    <div class="text-gray-600 font-semibold">Rating Rata-rata</div>
+                </div>
+                <div class="stat-card p-6 lg:p-8 rounded-2xl text-center border border-gray-100">
+                    <div class="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-ticket-alt text-2xl text-orange-600"></i>
+                    </div>
+                    <div class="text-3xl lg:text-4xl font-bold text-orange-600 mb-2" id="tiketTerjual">5K+</div>
+                    <div class="text-gray-600 font-semibold">Tiket Terjual</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- ======== BAGIAN DESTINASI POPULER ========= -->
+    <!-- ============================================= -->
+    <section id="destinasi" class="py-16 lg:py-24 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center bg-white rounded-full px-4 py-2 mb-4 shadow-sm border border-gray-100">
+                    <i class="fas fa-crown text-yellow-500 mr-2"></i>
+                    <span class="text-sm font-semibold text-gray-700">Destinasi Unggulan</span>
+                </div>
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-800 mb-4">🏝️ Destinasi Populer Banten</h2>
+                <p class="text-gray-600 text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed">
+                    Temukan keindahan wisata bahari terbaik yang menjadi favorit para traveler
+                </p>
+            </div>
+
+            <!-- Konten Kartu Destinasi akan diisi oleh index.js di sini -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="featuredWisata">
+                <!-- Placeholder Loading State -->
+                <div class="col-span-3 text-center py-12">
+                    <div class="spinner mx-auto mb-4"></div>
+                    <p class="text-gray-600">Memuat data destinasi terbaik...</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-16">
+                <a href="/wisata.html" class="inline-flex items-center bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-4 rounded-full font-bold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg group">
+                    Lihat Semua Destinasi
+                    <i class="fas fa-arrow-right ml-3 group-hover:translate-x-1 transition-transform duration-300"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+        <!-- ============================================= -->
+        <!-- ========= BAGIAN PROMO SPESIAL [BARU] ======= -->
+        <!-- ============================================= -->
+        <section id="promo" class="py-16 lg:py-24 bg-blue-600 text-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl lg:text-5xl font-bold mb-4">🔥 Promo & Penawaran Spesial</h2>
+                    <p class="text-lg lg:text-xl text-blue-200 max-w-3xl mx-auto">
+                        Jangan lewatkan diskon eksklusif untuk destinasi favorit Anda. Pesan sekarang sebelum kehabisan!
+                    </p>
+                </div>
+        
+                <!-- Konten Kartu Promo akan diisi oleh index.js di sini -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="featuredPromo">
+                    <!-- Placeholder Loading State -->
+                    <div class="col-span-3 text-center py-12">
+                        <div class="spinner-white mx-auto mb-4"></div>
+                        <p class="text-blue-200">Mencari penawaran terbaik...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- ============================================= -->
+    <!-- ========== BAGIAN BLOG TERBARU ============ -->
+    <!-- ============================================= -->
+    <section id="blog" class="py-16 lg:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center bg-white rounded-full px-4 py-2 mb-4 shadow-sm border border-gray-100">
+                    <i class="fas fa-pen-fancy text-blue-500 mr-2"></i>
+                    <span class="text-sm font-semibold text-gray-700">Artikel Terbaru</span>
+                </div>
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-800 mb-4">📝 Blog & Tips Wisata</h2>
+                <p class="text-gray-600 text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed">
+                    Informasi terbaru, tips traveling, dan cerita inspiratif untuk perjalanan Anda
+                </p>
+            </div>
+
+            <!-- Konten Kartu Blog akan diisi oleh index.js di sini -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="featuredBlog">
+                <!-- Placeholder Loading State -->
+                <div class="col-span-3 text-center py-12">
+                    <div class="spinner mx-auto mb-4"></div>
+                    <p class="text-gray-600">Memuat artikel terbaru...</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-16">
+                <a href="/blog.html" class="inline-flex items-center bg-gradient-to-r from-green-600 to-green-700 text-white px-8 py-4 rounded-full font-bold hover:from-green-700 hover:to-green-800 transition-all duration-300 transform hover:scale-105 shadow-lg group">
+                    Baca Semua Artikel
+                    <i class="fas fa-arrow-right ml-3 group-hover:translate-x-1 transition-transform duration-300"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Halaman Anda dapat memiliki lebih banyak bagian di sini seperti 'Kata Mereka', 'Jenis Wisata', dll. -->
+
+    <!-- ============================================= -->
+    <!-- ============== BAGIAN FOOTER ============== -->
+    <!-- ============================================= -->
+    <footer class="bg-gray-900 text-white py-12 lg:py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+                <!-- Tentang Perusahaan -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <img src="https://www.bluewavebanten.my.id/assets/images/logo_bluewave.png" alt="Logo" class="w-12 h-12">
+                        <span class="text-xl font-bold">BlueWave Banten</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                        Portal informasi wisata bahari Banten terpercaya, menyajikan destinasi terbaik untuk pengalaman wisata yang tak terlupakan.
+                    </p>
+                </div>
+                
+                <!-- Menu Utama Footer -->
+                <div>
+                    <h4 class="font-semibold text-lg mb-6">Menu Utama</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="/" class="hover:text-white transition-colors duration-200">Beranda</a></li>
+                        <li><a href="/wisata.html" class="hover:text-white transition-colors duration-200">Destinasi Wisata</a></li>
+                        <li><a href="/blog.html" class="hover:text-white transition-colors duration-200">Blog & Artikel</a></li>
+                        <li><a href="/tentang.html" class="hover:text-white transition-colors duration-200">Tentang Kami</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Kontak Kami Footer -->
+                <div>
+                    <h4 class="font-semibold text-lg mb-6">Kontak Kami</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start"><i class="fas fa-envelope mt-1 mr-3 text-blue-400"></i><span>info@bluewavebanten.my.id</span></li>
+                        <li class="flex items-start"><i class="fas fa-phone mt-1 mr-3 text-green-400"></i><span>+62 812-3456-7890</span></li>
+                        <li class="flex items-start"><i class="fas fa-map-marker-alt mt-1 mr-3 text-red-400"></i><span>Serang, Banten</span></li>
+                    </ul>
+                </div>
+                
+                <!-- Ikuti Kami Footer -->
+                <div>
+                    <h4 class="font-semibold text-lg mb-6">Ikuti Kami</h4>
+                    <div class="flex space-x-3">
+                        <a href="#" aria-label="Facebook" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-sky-500 transition-colors"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-sm text-gray-400">
+                <p>&copy; 2024 BlueWave Banten. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+</body>
+</html>

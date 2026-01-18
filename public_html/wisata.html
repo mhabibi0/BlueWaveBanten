@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Destinasi & Monitoring Wisata - BlueWave Banten</title>
+    <meta name="description" content="Jelajahi destinasi wisata bahari terbaik di Banten dan pantau potensi wisata pesisir melalui analisis data spasial interaktif.">
+    
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/wisata.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js"></script>
+    
+    </head>
+
+<body class="bg-gray-50 text-gray-800">
+
+    <header class="bg-white shadow-lg fixed w-full top-0 z-50 border-b border-gray-100">
+        <div class="container mx-auto flex justify-between items-center px-4 sm:px-6 py-3">
+            <a href="index.html" class="flex items-center space-x-2 sm:space-x-3 group">
+                <img src="https://www.bluewavebanten.my.id/assets/images/logo_bluewave.png" alt="Logo BlueWave Banten" class="w-12 h-12 sm:w-16 sm:h-16 object-contain transition-transform duration-300 group-hover:scale-105" />
+                <div>
+                    <span class="text-xl sm:text-2xl font-bold gradient-text">BlueWave Banten</span>
+                    <p class="text-xs text-gray-600 mt-1 hidden sm:block">Portal Wisata Bahari</p>
+                </div>
+            </a>
+            <nav class="hidden lg:flex items-center space-x-6 xl:space-x-8 text-gray-700 font-medium text-sm">
+                <a href="index.html" class="nav-link hover:text-blue-600 transition-all duration-300 py-2 flex items-center"><i class="fas fa-home mr-2 text-sm"></i>Beranda</a>
+                <div class="relative" id="destinasiDropdown">
+                    <button class="nav-link active hover:text-blue-600 transition-all duration-300 py-2 flex items-center">
+                        <i class="fas fa-map-marked-alt mr-2 text-sm"></i>Destinasi
+                        <i class="fas fa-chevron-down text-xs ml-1"></i>
+                    </button>
+                    <div id="destinasiMenu" class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl z-50 hidden">
+                        <a href="#wisata" class="tab-link block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600">Wisata Bahari</a>
+                        <a href="#monitoring" class="tab-link block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600">Monitoring Wisata</a>
+                    </div>
+                </div>
+                <a href="blog.html" class="nav-link hover:text-blue-600 transition-all duration-300 py-2 flex items-center"><i class="fas fa-newspaper mr-2 text-sm"></i>Blog</a>
+                <a href="tentang.html" class="nav-link hover:text-blue-600 transition-all duration-300 py-2 flex items-center"><i class="fas fa-info-circle mr-2 text-sm"></i>Tentang</a>
+                <div id="authSection">
+                    <a href="https://user.bluewavebanten.my.id/login.html" class="bg-blue-600 text-white px-5 py-2.5 rounded-full hover:bg-blue-700 transition-all duration-300">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Login
+                    </a>
+                </div>
+            </nav>
+            <div class="flex items-center space-x-4 lg:hidden">
+                <button class="text-gray-700 hover:text-blue-600 transition-colors duration-200" id="mobileMenuBtn"><i class="fas fa-bars text-xl"></i></button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="lg:hidden hidden bg-white border-t border-gray-100 shadow-lg">
+            <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+                <a href="index.html" class="nav-link py-3 border-b border-gray-100 flex items-center"><i class="fas fa-home mr-3 text-blue-600"></i>Beranda</a>
+                <a href="#wisata" class="tab-link nav-link active py-3 border-b border-gray-100 flex items-center"><i class="fas fa-umbrella-beach mr-3 text-blue-600"></i>Wisata Bahari</a>
+                <a href="#monitoring" class="tab-link nav-link py-3 border-b border-gray-100 flex items-center"><i class="fas fa-satellite mr-3 text-blue-600"></i>Monitoring Wisata</a>
+                <a href="blog.html" class="nav-link py-3 border-b border-gray-100 flex items-center"><i class="fas fa-newspaper mr-3 text-blue-600"></i>Blog</a>
+                <a href="tentang.html" class="nav-link py-3 border-b border-gray-100 flex items-center"><i class="fas fa-info-circle mr-3 text-blue-600"></i>Tentang</a>
+                <div id="mobileAuthSection" class="pt-2">
+                    <a href="https://user.bluewavebanten.my.id/login.html" class="bg-blue-600 text-white text-center py-3 rounded-lg block hover:bg-blue-700 transition-colors duration-300"><i class="fas fa-sign-in-alt mr-2"></i>Login</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20">
+        
+        <div id="wisataContent" class="tab-content">
+            <section class="pt-8 pb-16 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+                <div class="container mx-auto px-6">
+                    <div class="max-w-4xl mx-auto text-center">
+                        <div class="inline-flex items-center bg-white bg-opacity-10 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white border-opacity-20">
+                            <i class="fas fa-map-marked-alt text-yellow-300 mr-2"></i>
+                            <span class="text-sm font-semibold">Informasi Lengkap Wisata Bahari</span>
+                        </div>
+                        <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">Jelajahi Keindahan<span class="text-yellow-300 block mt-2">Destinasi Bahari Banten</span></h1>
+                        <p class="text-xl md:text-2xl mb-8 text-blue-100 leading-relaxed">Temukan informasi lengkap destinasi wisata bahari terbaik di Banten. Dari pantai eksotis hingga pulau menawan, semua ada di sini.</p>
+                        <div class="flex flex-wrap justify-center gap-8 mt-12">
+                            <div class="text-center"><div class="text-3xl font-bold text-yellow-300" id="totalDestinasi">...</div><div class="text-blue-200 text-sm">Destinasi</div></div>
+                            <div class="text-center"><div class="text-3xl font-bold text-yellow-300" id="avgRating">...</div><div class="text-blue-200 text-sm">Rating Rata-rata</div></div>
+                            <div class="text-center"><div class="text-3xl font-bold text-yellow-300" id="statCountPantai">...</div><div class="text-blue-200 text-sm">Pantai</div></div>
+                            <div class="text-center"><div class="text-3xl font-bold text-yellow-300" id="statCountPulau">...</div><div class="text-blue-200 text-sm">Pulau</div></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="py-16 bg-gray-50">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-12">
+                        <h2 class="text-4xl font-bold text-gray-800 mb-4">🗺️ Kategori Destinasi</h2>
+                        <p class="text-gray-600 text-lg max-w-2xl mx-auto">Jelajahi berbagai jenis wisata bahari yang bisa Anda nikmati di Banten</p>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                        <div class="category-card text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group">
+                            <div class="category-icon bg-blue-100 text-blue-600 mx-auto mb-4">🏖️</div>
+                            <h3 class="font-bold text-gray-800 mb-2">Wisata Pantai</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Destinasi pantai dengan pasir putih</p>
+                            <div class="text-blue-600 text-sm font-semibold mt-3" id="countPantai">... Destinasi</div>
+                        </div>
+                        <div class="category-card text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group">
+                            <div class="category-icon bg-green-100 text-green-600 mx-auto mb-4">🏝️</div>
+                            <h3 class="font-bold text-gray-800 mb-2">Pulau Eksotis</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Pulau-pulau dengan keindahan alam</p>
+                            <div class="text-green-600 text-sm font-semibold mt-3" id="countPulau">... Destinasi</div>
+                        </div>
+                        <div class="category-card text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group">
+                            <div class="category-icon bg-purple-100 text-purple-600 mx-auto mb-4">🏨</div>
+                            <h3 class="font-bold text-gray-800 mb-2">Resort & Villa</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Akomodasi mewah fasilitas lengkap</p>
+                            <div class="text-purple-600 text-sm font-semibold mt-3" id="countResort">... Destinasi</div>
+                        </div>
+                        <div class="category-card text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group">
+                            <div class="category-icon bg-emerald-100 text-emerald-600 mx-auto mb-4">🌿</div>
+                            <h3 class="font-bold text-gray-800 mb-2">Ekowisata</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Wisata alam dan konservasi</p>
+                            <div class="text-emerald-600 text-sm font-semibold mt-3" id="countMangrove">... Destinasi</div>
+                        </div>
+                        <div class="category-card text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group">
+                            <div class="category-icon bg-orange-100 text-orange-600 mx-auto mb-4">⚓</div>
+                            <h3 class="font-bold text-gray-800 mb-2">Pelabuhan</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Pelabuhan tradisional dan kuliner laut</p>
+                            <div class="text-orange-600 text-sm font-semibold mt-3" id="countPelabuhan">... Destinasi</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-16 bg-white">
+                <div class="container mx-auto px-6">
+                    <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-4">
+                        <div>
+                            <h2 class="text-3xl font-bold text-gray-800">Semua Destinasi Wisata</h2>
+                            <p class="text-gray-600 mt-2">Temukan tempat wisata favorit Anda di Banten</p>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="text-gray-600 text-sm" id="resultCount">Menampilkan...</div>
+                            <select id="sortFilter" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+                                <option value="name">Urut: Nama A-Z</option>
+                                <option value="rating">Rating Tertinggi</option>
+                                <option value="price_low">Harga Terendah</option>
+                                <option value="price_high">Harga Tertinggi</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="wisataGrid">
+                        <div class="col-span-full text-center py-12">
+                            <div class="spinner mx-auto mb-4"></div>
+                            <p class="text-gray-600">Memuat destinasi wisata...</p>
+                        </div>
+                    </div>
+                    <div class="text-center mt-12" id="loadMoreContainer" style="display: none;">
+                        <button id="loadMoreBtn" class="bg-blue-600 text-white px-8 py-4 rounded-full font-bold shadow-lg hover:bg-blue-700">Muat Lebih Banyak</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-16 bg-gray-50">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-12">
+                        <h2 class="text-4xl font-bold text-gray-800 mb-4">🗺️ Peta Wisata Banten</h2>
+                        <p class="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">Jelajahi lokasi semua destinasi wisata bahari di Banten pada peta interaktif.</p>
+                    </div>
+                    <div id="wisataMap" class="map-container mb-8"></div>
+                </div>
+            </section>
+        </div>
+
+        <div id="monitoringContent" class="tab-content hidden">
+            <section class="pt-8 pb-16 bg-gradient-to-r from-green-600 to-green-800 text-white">
+                <div class="container mx-auto px-6">
+                    <div class="max-w-4xl mx-auto text-center">
+                        <div class="inline-flex items-center bg-white bg-opacity-10 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white border-opacity-20">
+                            <i class="fas fa-satellite text-yellow-300 mr-2"></i>
+                            <span class="text-sm font-semibold">Analisis Penginderaan Jauh</span>
+                        </div>
+                        <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">Monitoring<span class="text-yellow-300 block mt-2">Potensi Wisata Bahari</span></h1>
+                        <p class="text-xl md:text-2xl mb-8 text-green-100 leading-relaxed">Analisis cerdas berbasis data spasial untuk mengidentifikasi potensi wisata bahari di pesisir Banten.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-16 bg-gray-50 border-b border-gray-200">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-12">
+                        <h2 class="text-4xl font-bold text-gray-800 mb-4">🌳 Potensi Ekowisata Mangrove</h2>
+                        <p class="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">Peta hasil analisis vegetasi mangrove menggunakan metode EVI (Enhanced Vegetation Index).</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                        <div class="lg:col-span-3">
+                            <div class="bg-white rounded-2xl shadow-lg p-6">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-4" id="mangroveMapTitle">Peta Analisis Mangrove</h3>
+                                <div id="mangroveMap" class="map-container"></div>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-2">
+                            <div class="analysis-legend bg-white p-6 rounded-2xl shadow-lg border-t-4 border-green-600">
+                                <h4 class="font-bold text-gray-800 mb-3">Legenda Kelayakan Mangrove</h4>
+                                <div class="space-y-2" id="mangroveLegend">
+                                    </div>
+                                <h4 class="font-bold text-gray-800 mt-4 mb-2">Pilih Layer:</h4>
+                                <div id="mangroveLayerControls" class="flex flex-col gap-2">
+                                     <span class="text-gray-500">Memuat kontrol...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-16 bg-white">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-12">
+                        <h2 class="text-4xl font-bold text-gray-800 mb-4">🐠 Potensi Snorkeling & Diving</h2>
+                        <p class="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">Peta hasil analisis substrate (terumbu karang) pesisir menggunakan Analisis Lyzenga.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                        <div class="lg:col-span-3">
+                            <div class="bg-white rounded-2xl shadow-lg p-6">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-4" id="pesisirMapTitle">Peta Analisis Pesisir</h3>
+                                <div id="pesisirMap" class="map-container"></div>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-2">
+                            <div class="analysis-legend bg-white p-6 rounded-2xl shadow-lg border-t-4 border-blue-600">
+                                <h4 class="font-bold text-gray-800 mb-3">Legenda Kelayakan Pesisir</h4>
+                                <div class="space-y-2" id="pesisirLegend">
+                                    </div>
+                                <h4 class="font-bold text-gray-800 mt-4 mb-2">Pilih Layer:</h4>
+                                <div id="pesisirLayerControls" class="flex flex-col gap-2">
+                                    <span class="text-gray-500">Memuat kontrol...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-20 bg-gray-100 border-t">
+                <div class="container mx-auto px-6 max-w-5xl">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl font-bold text-gray-800 mb-4">Metodologi Analisis Potensi</h2>
+                        <p class="text-gray-600 text-lg leading-relaxed">
+                            Peta kelayakan ini merupakan hasil pemodelan spasial kuantitatif menggunakan data Citra Satelit Landsat 8 OLI/TIRS, memberikan panduan ilmiah terhadap potensi pengembangan ekowisata bahari.
+                        </p>
+                    </div>
+            
+                    <div class="grid md:grid-cols-2 gap-12 items-start">
+                        
+                        <div class="bg-green-50 p-8 rounded-2xl border border-green-200 shadow-lg">
+                            <div class="flex items-center mb-4">
+                                <div class="p-3 rounded-full bg-green-600 text-white mr-4">
+                                    <i class="fas fa-seedling fa-2x"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-green-800">Potensi Ekowisata Mangrove</h3>
+                                    <p class="text-green-700 font-semibold">Indikator: Enhanced Vegetation Index (EVI)</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 leading-relaxed">
+                                Analisis tutupan dan kesehatan hutan mangrove didasarkan pada perhitungan EVI, sebuah indeks vegetasi yang disempurnakan. EVI lebih sensitif terhadap kerapatan kanopi dan kandungan klorofil dibandingkan indeks sederhana lainnya.
+                            </p>
+                            <ul class="mt-4 space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-leaf text-green-600 mt-1 mr-2"></i>
+                                    <span>Prinsip Ilmiah: EVI menghitung rasio pantulan cahaya inframerah dekat dan merah, memberikan nilai yang akurat mengenai kepadatan biomassa dan vitalitas vegetasi.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-chart-line text-green-600 mt-1 mr-2"></i>
+                                    <span>Hasil Analisis: Analisis EVI menunjukkan skor kelayakan (gridcode) berdasarkan seberapa rapat, luas, dan sehat kawasan mangrove tersebut.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-sliders-h text-green-600 mt-1 mr-2"></i>
+                                    <span>Penerapan: Skor kelayakan tertinggi diinterpretasikan sebagai area potensial untuk pengembangan jalur tracking dan edukasi ekowisata berbasis mangrove yang berkelanjutan.</span>
+                                </li>
+                            </ul>
+                        </div>
+            
+                        <div class="bg-blue-50 p-8 rounded-2xl border border-blue-200 shadow-lg">
+                            <div class="flex items-center mb-4">
+                                <div class="p-3 rounded-full bg-blue-600 text-white mr-4">
+                                    <i class="fas fa-water fa-2x"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-blue-800">Potensi Snorkeling & Diving</h3>
+                                    <p class="text-blue-700 font-semibold">Indikator: Algoritma Lyzenga (Kecerahan Dasar Perairan)</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 leading-relaxed">
+                                Untuk pemetaan ekosistem bawah laut (terumbu karang, lamun, pasir), kami menggunakan Algoritma Lyzenga. Ini adalah metode canggih yang secara matematis menghilangkan efek Koreksi Kolom Air (Water Column Correction) dari citra satelit.
+                            </p>
+                            <ul class="mt-4 space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-broadcast-tower text-blue-600 mt-1 mr-2"></i>
+                                    <span>Prinsip Ilmiah: Metode Lyzenga bekerja dengan membandingkan nilai pantulan dari pita cahaya yang berbeda untuk menentukan kecerahan dasar perairan tanpa gangguan dari kedalaman atau kekeruhan air.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-cubes text-blue-600 mt-1 mr-2"></i>
+                                    <span>Hasil Analisis: Peta dihasilkan melalui klasifikasi area dasar perairan untuk mengidentifikasi keberadaan Substrate (terumbu karang/karang hidup) yang menjadi kunci spot snorkeling/diving terbaik.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-hand-holding-water text-blue-600 mt-1 mr-2"></i>
+                                    <span>Penerapan: Area dengan kecerahan perairan yang tinggi dan tutupan substrat yang baik (terumbu karang) menunjukkan skor kelayakan tertinggi untuk aktivitas wisata bawah air.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <div class="fab" id="fabScrollTop" style="display: none;">
+            <i class="fas fa-arrow-up"></i>
+        </div>
+    </main>
+
+    <div id="wisataModal" class="modal">
+        <div class="modal-content">
+            <div class="p-8">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <h2 id="modalTitle" class="text-3xl font-bold text-gray-800">Memuat...</h2>
+                        <div class="flex items-center mt-2 space-x-4 text-gray-600">
+                            <span class="flex items-center"><i class="fas fa-map-marker-alt mr-2"></i><span id="modalLocation">...</span></span>
+                            <span class="flex items-center"><i class="fas fa-star text-yellow-400 mr-1"></i><span id="modalRating">...</span></span>
+                            <span class="flex items-center"><i class="fas fa-eye mr-2"></i><span id="modalViews">...</span></span>
+                        </div>
+                    </div>
+                    <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 text-2xl bg-gray-100 rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200 transition-colors duration-200"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                        <img id="modalImage" src="" alt="" class="w-full h-80 object-cover rounded-2xl shadow-lg mb-6">
+                        <div class="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-2xl border border-blue-200 mt-6">
+                            <h4 class="font-semibold text-blue-800 mb-4 flex items-center text-lg"><i class="fas fa-cloud-sun text-2xl mr-3"></i>Kondisi Saat Ini</h4>
+                            <div id="modalWeather" class="space-y-3"></div>
+                            <div id="weatherSafety" class="mt-4 p-3 rounded-lg text-center font-semibold"></div>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-3 text-lg flex items-center"><i class="fas fa-info-circle text-blue-600 mr-2"></i>Deskripsi</h4>
+                            <p id="modalDescription" class="text-gray-600 leading-relaxed"></p>
+                        </div>
+                        <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-2xl border border-green-200">
+                            <h4 class="font-semibold text-gray-800 mb-2">Harga Tiket Masuk</h4>
+                            <div class="flex items-baseline space-x-2 mb-4">
+                                <span id="modalPrice" class="text-4xl font-bold text-green-600"></span>
+                                <span class="text-gray-600">/orang</span>
+                            </div>
+                            <div class="space-y-3">
+                                <a href="https://user.bluewavebanten.my.id/login.html" class="w-full block text-center bg-gradient-to-r from-blue-600 to-blue-700 text-white py-4 rounded-xl font-bold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg"><i class="fas fa-ticket-alt mr-3"></i>Pesan Tiket Sekarang</a>
+                                <a href="https://user.bluewavebanten.my.id/login.html" class="w-full block text-center border-2 border-blue-600 text-blue-600 py-3 rounded-xl font-semibold hover:bg-blue-600 hover:text-white transition-all duration-300"><i class="far fa-heart mr-2"></i>Tambah ke Wishlist</a>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-semibold text-green-600 mb-3 flex items-center"><i class="fas fa-check-circle mr-2"></i>Fasilitas</h4>
+                                <ul id="modalFasilitas" class="text-sm text-gray-600 space-y-2"></ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-blue-600 mb-3 flex items-center"><i class="fas fa-lightbulb mr-2"></i>Tips Berkunjung</h4>
+                                <ul id="modalTips" class="text-sm text-gray-600 space-y-2"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="https://www.bluewavebanten.my.id/assets/images/logo_bluewave.png" alt="Logo" class="w-12 h-12">
+                        <span class="text-xl font-bold">BlueWave Banten</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">Portal informasi wisata bahari Banten terpercaya, menyajikan destinasi terbaik, tips traveling, dan panduan lengkap.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 text-lg">Destinasi Populer</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#wisata" class="hover:text-white transition-colors duration-200 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-blue-400"></i> Pulau Panjang</a></li>
+                        <li><a href="#wisata" class="hover:text-white transition-colors duration-200 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-blue-400"></i> Tanjung Lesung</a></li>
+                        <li><a href="#wisata" class="hover:text-white transition-colors duration-200 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-blue-400"></i> Pantai Anyer</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 text-lg">Menu Utama</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html" class="hover:text-white transition-colors duration-200 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-blue-400"></i> Beranda</a></li>
+                        <li><a href="blog.html" class="hover:text-white transition-colors duration-200 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-blue-400"></i> Blog & Tips</a></li>
+                        <li><a href="#wisata" class="hover:text-white transition-colors duration-200 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-blue-400"></i> Destinasi Wisata</a></li>
+                        <li><a href="tentang.html" class="hover:text-white transition-colors duration-200 flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-blue-400"></i> Tentang Kami</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 text-lg">Kontak</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center"><i class="fas fa-envelope mr-3 text-blue-400"></i>info@bluewavebanten.my.id</li>
+                        <li class="flex items-center"><i class="fas fa-map-marker-alt mr-3 text-red-400"></i>Serang, Banten</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400"><p>&copy; 2024 BlueWave Banten. All rights reserved.</p></div>
+        </div>
+    </footer>
+    
+    <script src="assets/js/wisata.js" defer></script>
+</body>
+</html>
