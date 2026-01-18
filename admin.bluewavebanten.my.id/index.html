@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlueWave Banten | Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/admin.css"> 
+</head>
+<body>
+    
+    <div id="loginPage" class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="login-logo">
+                    <img src="https://bluewavebanten.my.id/assets/images/logo_bluewave.png" alt="BlueWave Banten" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="logo-img" style="display:none;">BW</div>
+                    <div class="login-logo-text">BlueWave Banten</div>
+                </div>
+                <p class="login-subtitle">Admin Dashboard</p>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Masukkan username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Masukkan password" required>
+                </div>
+                <button type="submit" class="btn" id="loginBtn">
+                    <span id="loginText">Masuk</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="dashboardPage" class="dashboard-container">
+        
+        <div class="sidebar">
+            <div class="logo-container">
+                 <div class="logo">
+                    <img src="https://bluewavebanten.my.id/assets/images/logo_bluewave.png" alt="BlueWave Banten" class="logo-img-sidebar" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="logo-img-sidebar" style="display:none;">BW</div>
+                    <div class="logo-text">BlueWave Admin</div>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-page="dashboard">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-page="wisata">
+                    <i class="fas fa-umbrella-beach"></i>
+                    <span>Wisata</span>
+                </a>
+                <a href="#" class="nav-item" data-page="mitra">
+                    <i class="fas fa-handshake"></i>
+                    <span>Mitra</span>
+                    </a>
+                <a href="#" class="nav-item" data-page="tiket">
+                    <i class="fas fa-ticket-alt"></i>
+                    <span>Tiket</span>
+                </a>
+                <a href="#" class="nav-item" data-page="promo">
+                    <i class="fas fa-gift"></i>
+                    <span>Promo</span>
+                </a>
+                <a href="#" class="nav-item" data-page="blog">
+                    <i class="fas fa-blog"></i>
+                    <span>Blog</span>
+                </a>
+                <a href="#" class="nav-item" data-page="laporan">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Laporan</span>
+                </a>
+            </nav>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <button class="btn btn-sm menu-toggle-btn" id="menuToggleBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="header-title">
+                    <h1 id="pageTitle">Dashboard Admin</h1> <p>Kelola seluruh sistem wisata BlueWave Banten</p>
+                </div>
+                <div class="header-actions">
+                    <div class="user-menu">
+                        <button class="user-btn" id="userMenuBtn">
+                            <i class="fas fa-user-circle"></i>
+                            <span id="userName">Admin</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="user-dropdown" id="userDropdown">
+                            <a href="#" id="logoutLink">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span>Keluar</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section id="page-dashboard" class="content-section active">
+                <div class="summary-grid">
+                    <div class="summary-card">
+                        <div class="summary-icon">
+                            <i class="fas fa-umbrella-beach"></i>
+                        </div>
+                        <div class="summary-info">
+                            <h3 id="count-wisata">0</h3>
+                            <p>Total Wisata</p>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="summary-info">
+                            <h3 id="count-mitra">0</h3>
+                            <p>Mitra Aktif</p>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-icon">
+                            <i class="fas fa-ticket-alt"></i>
+                        </div>
+                        <div class="summary-info">
+                            <h3 id="count-tiket">0</h3>
+                            <p>Tiket Hari Ini</p>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-icon">
+                            <i class="fas fa-blog"></i>
+                        </div>
+                        <div class="summary-info">
+                            <h3 id="count-blog">0</h3>
+                            <p>Artikel Blog</p>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="summary-info">
+                            <h3 id="count-pendapatan">Rp 0</h3>
+                            <p>Pendapatan Bulan Ini</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Aktivitas Terbaru</h2>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Waktu</th>
+                                    <th>Pengguna</th>
+                                    <th>Aktivitas</th>
+                                    <th>Detail</th>
+                                </tr>
+                            </thead>
+                            <tbody id="activityTable">
+                                <tr>
+                                    <td colspan="4" class="text-center">Memuat data...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="page-wisata-list" class="content-section hidden">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Manajemen Wisata</h2>
+                        <button class="btn" onclick="AdminApp.newWisata()">
+                            <i class="fas fa-plus"></i>
+                            Tambah Wisata
+                        </button>
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Kategori</th>
+                                    <th>Lokasi</th>
+                                    <th>Harga</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="wisataTable">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="page-wisata-edit" class="content-section hidden">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title" id="wisataFormTitle">Tambah Wisata</h2>
+                    </div>
+
+                    <form id="wisataForm" class="form-layout" onsubmit="event.preventDefault(); AdminApp.saveWisata();">
+                        <div class="grid grid-cols-2">
+                            <div class="form-group">
+                                <label for="wNama">Nama Wisata</label>
+                                <input type="text" id="wNama" placeholder="Masukkan nama wisata" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="wKategori">Kategori</label>
+                                <select id="wKategori" required>
+                                    <option value="">Pilih kategori</option>
+                                    <option value="Pantai">Pantai</option>
+                                    <option value="Pulau">Pulau</option>
+                                    <option value="Air Terjun">Air Terjun</option>
+                                    <option value="Taman">Taman</option>
+                                    <option value="Gunung">Gunung</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="form-group">
+                                <label for="wLokasi">Lokasi</label>
+                                <input type="text" id="wLokasi" placeholder="Masukkan lokasi wisata" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="wHarga">Harga Tiket (Rp)</label>
+                                <input type="number" id="wHarga" placeholder="Masukkan harga tiket" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="wGambar">URL Gambar</label>
+                            <input type="url" id="wGambar" placeholder="https://.../gambar.jpg">
+                        </div>
+                        <div id="wGambarPreviewContainer" class="form-group" style="display: none; margin-bottom: 1.5rem;">
+                            <label>Pratinjau Gambar</label>
+                            <img id="wGambarPreview" src="" alt="Pratinjau Gambar Wisata" style="max-width: 200px; height: auto; border-radius: 0.5rem; border: 1px solid var(--gray-300);">
+                        </div>
+                        <div class="form-group">
+                            <label for="wDesc">Deskripsi</label>
+                            <textarea id="wDesc" rows="4" placeholder="Masukkan deskripsi wisata"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="wFasilitas">Fasilitas (pisahkan dengan koma)</label>
+                            <textarea id="wFasilitas" rows="3" placeholder="Contoh: Toilet, Mushola, Warung Makan, Area Parkir"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="wTips">Tips Berkunjung (pisahkan dengan koma)</label>
+                            <textarea id="wTips" rows="3" placeholder="Contoh: Bawa sunblock, Gunakan sepatu pantai, Datang saat pagi"></textarea>
+                         </div>
+                        <div class="grid grid-cols-2">
+                            <div class="form-group">
+                                <label for="wLatitude">Latitude</label>
+                                <input type="text" id="wLatitude" placeholder="Contoh: -6.123456">
+                            </div>
+                            <div class="form-group">
+                                <label for="wLongitude">Longitude</label>
+                                <input type="text" id="wLongitude" placeholder="Contoh: 106.123456">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="wStatus">Status</label>
+                            <select id="wStatus">
+                                <option value="1">Aktif</option>
+                                <option value="0">Tidak Aktif</option>
+                            </select>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="AdminApp.closeWisata()">Batal</button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Simpan
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section id="page-blog-list" class="content-section hidden">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Manajemen Blog</h2>
+                        <button class="btn" onclick="AdminApp.newBlog()">
+                            <i class="fas fa-plus"></i> Artikel Baru
+                        </button>
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Judul</th>
+                                    <th>Penulis</th>
+                                    <th>Status</th>
+                                    <th>Tanggal Terbit</th>
+                                    <th>Tindakan</th>
+                                </tr>
+                            </thead>
+                            <tbody id="blogTable">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="page-blog-edit" class="content-section hidden">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title" id="blogFormTitle">Artikel Baru</h2>
+                    </div>
+
+                    <form id="blogForm" class="form-layout" onsubmit="event.preventDefault(); AdminApp.saveBlog();">
+                        <div class="form-group">
+                            <label for="bJudul">Judul Artikel</label>
+                            <input type="text" id="bJudul" placeholder="Masukkan judul artikel" required>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="form-group">
+                                <label for="bKategori">Kategori</label>
+                                <select id="bKategori" required>
+                                    <option value="">Pilih kategori</option>
+                                    <option value="Wisata">Wisata</option>
+                                    <option value="Tips">Tips</option>
+                                    <option value="Berita">Berita</option>
+                                    <option value="Promo">Promo</option>
+                                    <option value="Kuliner">Kuliner</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="bStatus">Status</label>
+                                <select id="bStatus">
+                                    <option value="published">Published</option>
+                                    <option value="draft">Draft</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="bGambar">URL Gambar</label>
+                            <input type="url" id="bGambar" placeholder="https://.../gambar.jpg">
+                        </div>
+                        <div class="form-group">
+                            <label for="bKonten">Konten Artikel</label>
+                            <textarea id="bKonten" rows="12" placeholder="Tulis konten artikel di sini..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="bExcerpt">Ringkasan (Excerpt)</label>
+                            <textarea id="bExcerpt" rows="3" placeholder="Masukkan ringkasan artikel (opsional)"></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="AdminApp.closeBlog()">Batal</button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Simpan Artikel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section id="page-mitra-list" class="content-section hidden">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Daftar Mitra</h2>
+                        <button class="btn" onclick="AdminApp.newMitra()">
+                            <i class="fas fa-plus"></i> Tambah Mitra
+                        </button>
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nama Mitra</th>
+                                    <th>Username</th>
+                                    <th>Wisata Terhubung</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="mitraTable">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="page-mitra-edit" class="content-section hidden">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title" id="mitraFormTitle">Tambah Mitra</h2>
+                    </div>
+
+                    <form id="mitraForm" class="form-layout" onsubmit="event.preventDefault(); AdminApp.saveMitra();">
+                        <div class="form-group">
+                            <label for="mNama">Nama Mitra</label>
+                            <input type="text" id="mNama" placeholder="Masukkan nama mitra" required>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="form-group">
+                                <label for="mUsername">Username</label>
+                                <input type="text" id="mUsername" placeholder="Username untuk login..." required>
+                            </div>
+                            <div class="form-group">
+                                <label for="mPassword">Password</label>
+                                <input type="password" id="mPassword" placeholder="Wajib diisi untuk mitra baru">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                             <div class="form-group">
+                                <label for="mWisataId">Hubungkan ke Wisata</label>
+                                <select id="mWisataId">
+                                    <option value="">-- Pilih Wisata --</option>
+                                    </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="mStatus">Status Akun</label>
+                                <select id="mStatus">
+                                    <option value="1">Aktif</option>
+                                    <option value="0">Tidak Aktif</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="AdminApp.closeMitra()">Batal</button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Simpan Mitra
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section id="page-tiket" class="content-section hidden">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Transaksi Tiket</h2>
+                        <div class="filter-controls">
+                            <input type="date" id="filterTanggal">
+                            <select id="filterStatus">
+                                <option value="">Semua Status</option>
+                                <option value="pending">Pending</option>
+                                <option value="paid">Paid</option>
+                                <option value="used">Used</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                            <button class="btn btn-sm" onclick="AdminApp.loadTiket()">
+                                <i class="fas fa-filter"></i>
+                                Filter
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Kode</th>
+                                    <th>Wisata</th>
+                                    <th>Tanggal</th>
+                                    <th>Jumlah</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tiketTable">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Validasi Tiket</h2>
+                    </div>
+                    <form class="validation-layout" onsubmit="event.preventDefault(); AdminApp.validateTiket();">
+                        <div class="form-group">
+                            <label for="kodeTiket">Kode Tiket / QR Code</label>
+                            <div class="input-with-button">
+                                <input type="text" id="kodeTiket" placeholder="Masukkan kode tiket">
+                                <button type="submit" class="btn">
+                                    <i class="fas fa-check"></i>
+                                    Validasi
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section id="page-promo-list" class="content-section hidden">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Promo & Event</h2>
+                        <button class="btn" onclick="AdminApp.newPromo()">
+                            <i class="fas fa-plus"></i> Tambah Promo
+                        </button>
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Wisata</th>
+                                    <th>Diskon</th>
+                                    <th>Tanggal Berakhir</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="promoTable">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="page-promo-edit" class="content-section hidden">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title" id="promoFormTitle">Tambah Promo</h2>
+                    </div>
+
+                    <form id="promoForm" class="form-layout" onsubmit="event.preventDefault(); AdminApp.savePromo();">
+                        <div class="form-group">
+                            <label for="pNama">Nama Promo</label>
+                            <input type="text" id="pNama" placeholder="Contoh: Diskon Libur Sekolah" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pWisataId">Berlaku untuk Wisata</label>
+                            <select id="pWisataId">
+                                <option value="">-- Berlaku untuk SEMUA Wisata --</option>
+                                </select>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="form-group">
+                                <label for="pJenis">Jenis Diskon</label>
+                                <select id="pJenis">
+                                    <option value="persen">Persentase (%)</option>
+                                    <option value="tetap">Potongan Tetap (Rp)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="pNilai">Nilai Diskon</label>
+                                <input type="number" id="pNilai" placeholder="Contoh: 20 atau 10000" required>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="form-group">
+                                <label for="pTanggal">Tanggal Berakhir</label>
+                                <input type="date" id="pTanggal" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="pStatus">Status Promo</label>
+                                <select id="pStatus">
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="AdminApp.closePromo()">Batal</button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Simpan Promo
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section id="page-laporan" class="content-section hidden">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Laporan Penjualan Tiket</h2>
+        </div>
+        
+        <div class="filter-controls" style="margin-bottom: 20px;">
+            <label for="filterBulan" style="font-weight: 500; color: var(--gray-700);">Pilih Bulan:</label>
+            <input type="month" id="filterBulan" style="padding: 8px 12px; border: 1px solid var(--gray-300); border-radius: 0.5rem; font-family: inherit;">
+            <button class="btn btn-sm" onclick="AdminApp.loadLaporan()">
+                <i class="fas fa-filter"></i>
+                Tampilkan Laporan
+            </button>
+        </div>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tanggal</th>
+                        <th>Wisata</th>
+                        <th>Jumlah Tiket Terjual</th>
+                        <th>Total Pendapatan</th>
+                    </tr>
+                </thead>
+                <tbody id="laporanTable">
+                    <tr>
+                        <td colspan="4" class="text-center">Pilih bulan untuk menampilkan laporan</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="card" style="margin-top: 20px; background-color: var(--gray-50); text-align: right;">
+            <h3 class="card-title" style="text-align: left;">Total Pendapatan Bulan Ini</h3>
+            <h2 id="laporanTotalPendapatan" style="font-size: 2rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 0;">Rp 0</h2>
+        </div>
+
+    </div>
+</section>
+    
+    <script src="assets/js/admin.js"></script> 
+    
+</body>
+</html>

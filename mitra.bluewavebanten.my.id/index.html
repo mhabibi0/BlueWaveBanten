@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlueWave Banten | Mitra Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/mitra.css"> 
+</head>
+<body>
+    
+    <div id="loginPage" class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="login-logo">
+                    <img src="https://bluewavebanten.my.id/assets/images/logo_bluewave.png" alt="BlueWave Banten" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="logo-img" style="display:none;">BW</div>
+                    <div class="login-logo-text">BlueWave Banten</div>
+                </div>
+                <p class="login-subtitle">Mitra Dashboard</p>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Masukkan username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Masukkan password" required>
+                </div>
+                <button type="submit" class="btn" id="loginBtn">
+                    <span class="spinner" id="loginSpinner" style="display: none;"></span>
+                    <span id="loginText">Masuk</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="dashboardPage" class="dashboard-container">
+        
+        <div class="sidebar">
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="https://bluewavebanten.my.id/assets/images/logo_bluewave.png" alt="BlueWave Banten" class="logo-img-sidebar" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="logo-img-sidebar" style="display:none;">BW</div>
+                    <div class="logo-text">Mitra BlueWave</div>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-page="dashboard">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-page="validasi">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Validasi Tiket</span>
+                </a>
+                <a href="#" class="nav-item" data-page="laporan">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Laporan Saya</span>
+                </a>
+                
+                <a href="#" class="nav-item" data-page="promo">
+                    <i class="fas fa-gift"></i>
+                    <span>Buat Promo</span>
+                </a>
+                <a href="#" class="nav-item" data-page="profil">
+                    <i class="fas fa-store"></i>
+                    <span>Profil Wisata</span>
+                </a>
+            </nav>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <div class="header-title">
+                    <h1 id="pageTitle">Dashboard Mitra</h1>
+                    <p>Kelola operasional wisata Anda</p>
+                </div>
+                <div class="header-actions">
+                    <div class="user-menu">
+                        <button class="user-btn" id="userMenuBtn">
+                            <i class="fas fa-user-circle"></i>
+                            <span id="userName">Mitra</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="user-dropdown" id="userDropdown">
+                            <a href="#" id="logoutLink">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span>Keluar</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section id="page-dashboard" class="content-section active">
+                <div class="summary-grid">
+                    <div class="summary-card">
+                        <div class="summary-icon">
+                            <i class="fas fa-ticket-alt"></i>
+                        </div>
+                        <div class="summary-info">
+                            <h3 id="count-tiket-hari-ini">0</h3>
+                            <p>Tiket Terjual (Hari Ini)</p>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-icon">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div class="summary-info">
+                            <h3 id="count-tamu-checkin">0</h3>
+                            <p>Tamu Sudah Check-in</p>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="summary-info">
+                            <h3 id="count-pendapatan-bulan">Rp 0</h3>
+                            <p>Pendapatan Bulan Ini</p>
+                        </div>
+                    </div>
+                </div>
+                <<div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Lokasi Wisata & Cuaca</h2>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                        <div id="map" style="height: 300px; border-radius: 0.5rem; z-index: 1;">
+                            <div class="chart-placeholder">
+                                <p>Memuat Peta...</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="card-title">Prakiraan Cuaca</h3>
+                            <div id="weatherWidget">Memuat data cuaca...</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="page-validasi" class="content-section hidden">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Validasi Tiket</h2>
+                    </div>
+                    <div class="validation-layout">
+                        <div class="form-group">
+                            <label for="kodeTiket">Scan atau Masukkan Kode Tiket</label>
+                            <div class="input-with-button">
+                                <input type="text" id="kodeTiket" placeholder="Masukkan kode tiket">
+                                <button class="btn" onclick="validateTiket()">
+                                    <i class="fas fa-check"></i>
+                                    Validasi
+                                </button>
+                            </div>
+                        </div>
+                        <div id="validationResult" class="hidden"></div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Daftar Tiket (Booking Hari Ini)</h2>
+                        <button class="btn btn-sm" onclick="loadTiket()"><i class="fas fa-sync"></i> Refresh</button>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Kode</th>
+                                    <th>Tanggal</th>
+                                    <th>Jumlah</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tiketTable">
+                                <tr><td colspan="5" class="text-center">Memuat data...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="page-laporan" class="content-section hidden">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Laporan Pendapatan Saya</h2>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">Laporan Detail</h3>
+                        <div class="filter-controls" style="margin-bottom: 20px;">
+                            <input type="month" id="filterBulan">
+                            <button class="btn btn-sm" onclick="loadLaporan()">
+                                <i class="fas fa-download"></i>
+                                Generate Laporan
+                            </button>
+                        </div>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tanggal</th>
+                                        <th>Jumlah Tiket</th>
+                                        <th>Total Pendapatan</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="laporanTable">
+                                    <tr><td colspan="3" class="text-center">Pilih bulan untuk menampilkan laporan</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            
+            <section id="page-promo-list" class="content-section hidden">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Promo/Bundling Saya</h2>
+            <button class="btn" onclick="newPromo()">
+                <i class="fas fa-plus"></i>
+                Buat Promo Baru
+            </button>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nama Promo</th>
+                        <th>Diskon</th>
+                        <th>Berakhir</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="promoTable">
+                    <tr><td colspan="5" class="text-center">Memuat data...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section id="page-promo-edit" class="content-section hidden">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title" id="promoFormTitle">Buat Bundling/Promo Baru</h2>
+        </div>
+
+        <form id="promoForm" class="form-layout" onsubmit="event.preventDefault(); savePromo();">
+            <div class="form-group">
+                <label for="pNama">Nama Promo</label>
+                <input type="text" id="pNama" placeholder="Contoh: Bundling Tiket + Snorkeling" required>
+            </div>
+            
+            <div class="grid grid-cols-2">
+                <div class="form-group">
+                    <label for="pJenis">Jenis Diskon</label>
+                    <select id="pJenis">
+                        <option value="persen">Persentase (%)</option>
+                        <option value="tetap">Nominal Tetap (Rp)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="pNilai">Nilai Diskon</label>
+                    <input type="number" id="pNilai" placeholder="Contoh: 10 (u/ 10%) atau 5000 (u/ Rp 5rb)" required>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2">
+                <div class="form-group">
+                    <label for="pTanggal">Tanggal Berakhir</label>
+                    <input type="date" id="pTanggal" required>
+                </div>
+                <div class="form-group">
+                    <label for="pStatus">Status Promo</label>
+                    <select id="pStatus">
+                        <option value="active">Aktif</option>
+                        <option value="inactive">Nonaktif</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button type="button" class="btn btn-ghost" onclick="closePromo()">Batal</button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Simpan Promo
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+            
+            <section id="page-profil-list" class="content-section hidden">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Profil Wisata Saya</h2>
+                        <button class="btn" onclick="editProfil()">
+                            <i class="fas fa-edit"></i>
+                            Edit Profil
+                        </button>
+                    </div>
+                    <div class="form-layout">
+                         <p>Memuat data profil...</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="page-profil-edit" class="content-section hidden">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title" id="profilFormTitle">Edit Profil Wisata</h2>
+                    </div>
+
+                    <div id="profilForm" class="form-layout">
+                        <div class="form-group">
+                            <label for="wNama">Nama Wisata (Read-only)</label>
+                            <input type="text" id="wNama" placeholder="Nama wisata Anda" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="wLokasi">Lokasi (Read-only)</label>
+                            <input type="text" id="wLokasi" placeholder="Lokasi wisata Anda" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="wHarga">Harga Tiket (Rp)</label>
+                            <input type="number" id="wHarga" placeholder="Masukkan harga tiket">
+                        </div>
+                        <div class="form-group">
+                            <label for="wGambar">URL Gambar</label>
+                            <input type="text" id="wGambar" placeholder="Masukkan URL gambar">
+                        </div>
+                        <div class="form-group">
+                            <label for="wDesc">Deskripsi</label>
+                            <textarea id="wDesc" rows="4" placeholder="Masukkan deskripsi wisata"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="wFasilitas">Fasilitas (pisahkan dengan koma)</label>
+                            <textarea id="wFasilitas" rows="3" placeholder="Contoh: Toilet, Mushola, Warung Makan, Area Parkir"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="wTips">Tips Berkunjung (pisahkan dengan koma)</label>
+                            <textarea id="wTips" rows="3" placeholder="Contoh: Bawa sunblock, Gunakan sepatu pantai, Datang saat pagi"></textarea>
+                         </div>
+                        <div>
+                            <button class="btn" onclick="saveProfil()">
+                                <i class="fas fa-save"></i>
+                                Simpan Perubahan
+                            </button>
+                            <button class="btn btn-ghost" onclick="closeProfil()">
+                                <i class="fas fa-times"></i>
+                                Batal
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+        </div>
+    </div>
+    
+    <script src="assets/js/mitra.js"></script> 
+    
+</body>
+</html>
